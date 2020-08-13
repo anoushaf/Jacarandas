@@ -1,0 +1,20 @@
+<div class="jcr-content">
+  <div class="container text-center">
+    <div class="card d-inline-block mb-4 p-4 text-left">
+      <h1 class="h3 mb-4">Edit Profile</h1>
+      {{> form-profile action="/profile" alert=alert avatars=avatars button="Update" student=student}}
+    </div>
+    <div class="d-inline-block p-4 text-left">
+      <p>If you no longer want a Jacarandas Music Academy account, you can delete it here.</p>
+      <form
+        action="/delete-account"
+        data-form-delete="Are you sure you want to delete your account? It can't be recovered."
+        method="post"
+      >
+        <button class="btn btn-danger jcr-btn jcr-btn--danger" type="submit">
+          Delete Account
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,25 @@
+<form class="jcr-form" action="{{action}}" method="post">
+  {{#if alert}}
+    <p class="alert alert-danger">{{alert}}</p>
+  {{/if}}
+  <div class="form-group">
+    <label for="image">Image</label><br>
+    <select class="form-control" data-avatar-image id="image" name="image">
+      <option value=""></option>
+      {{#each images}}
+        <option value={{image}} {{#if (eq image ../avatar.image)}}selected{{/if}}>{{image}}</option>
+      {{/each}}
+    </select>
+    <small>Must be a .gif, .jpg, or .png manually uploaded to <code>static/images/avatars</code> folder.</small>
+  </div>
+  <div class="jcr-avatar" data-preview-image>
+    {{#if avatar.image}}
+      <img class="jcr-avatar" src="/images/avatars/{{avatar.image}}" alt="">
+    {{/if}}
+  </div>
+  <div class="mt-4">
+    <button class="btn btn-primary jcr-btn jcr-btn--primary" type="submit">
+      {{button}}
+    </button>
+  </div>
+</form>

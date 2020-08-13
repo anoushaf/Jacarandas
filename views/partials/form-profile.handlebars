@@ -1,0 +1,94 @@
+<form class="jcr-form" action="{{action}}" method="post">
+  {{#if alert}}
+    <p class="alert alert-danger">{{alert}}</p>
+  {{/if}}
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="firstname">First Name</label>
+        <input class="form-control" id="firstname" name="firstname" type="text" value="{{student.firstname}}">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="lastname">Last Name</label>
+        <input class="form-control" id="lastname" name="lastname" type="text" value="{{student.lastname}}">
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input class="form-control" id="email" name="email" type="email" value="{{student.email}}">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="birthdate">Birthdate</label>
+        <input class="form-control" id="birthdate" max="{{formDate minDate}}"name="birthdate" type="date" value="{{formDate student.birthdate}}">
+        <small>You must be at least 13 years old{{#unless (eq action "/profile")}} to register{{/unless}}.</small>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input class="form-control" id="username" name="username" type="text" value="{{student.username}}">
+      </div>
+    </div>
+    <div class="col-md-6">
+      <div class="form-group">
+        <label for="password">{{#if (eq action "/profile")}}Change {{/if}}Password</label>
+        <input class="form-control" id="password" name="password" type="password" value="{{student.password}}">
+        {{#if (eq action "/profile")}}
+          <small>Leave blank if you don't want to change your current password.</small>
+        {{/if}}
+      </div>
+    </div>
+  </div>
+  <p class="mb-2">Avatar</p>
+  <div class="form-group jcr-avatars-max">
+    {{#each avatars}}
+      <div class="form-check form-check-inline mb-3 mr-3">
+        <input class="form-check-input" id="avatar-{{id}}" name="avatar_id" type="radio" value="{{id}}" {{#if (eq id ../student.avatar_id)}}checked{{/if}}>
+        <label class="form-check-label" for="avatar-{{id}}">
+         <img class="jcr-avatar" src="/images/avatars/{{image}}" alt="">
+        </label>
+      </div>
+    {{/each}}
+    <div class="form-check form-check-inline mb-3">
+      <input class="form-check-input" id="avatar-none" name="avatar_id" type="radio" value="" {{#unless student.avatar_id}}checked{{/unless}}>
+      <label class="form-check-label" for="avatar-none">
+         None
+      </label>
+    </div>
+  </div>
+  <div class="form-check mb-4">
+    <input class="form-check-input" id="optin" name="optin" type="checkbox" value="1" {{#if student.optin}}checked{{/if}}>
+    <label class="form-check-label" for="optin">
+      Yes, I want to receive communications from Jacarandas Music Academy.
+    </label>
+  </div>
+  {{#if captcha}}
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label for="captcha">Challenge Code</label>
+          <div class="row">
+            <div class="col-6 mb-4">
+              {{{captcha}}}
+            </div>
+            <div class="col-6 mb-4">
+              <input class="form-control" id="captcha" name="captcha" placeholder="Enter code" type="text">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{/if}}
+  <button class="btn btn-primary jcr-btn jcr-btn--primary" type="submit">
+    {{button}}
+  </button>
+</form>

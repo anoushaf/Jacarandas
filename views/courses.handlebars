@@ -1,0 +1,48 @@
+<div class="jcr-content">
+  <div class="container">
+    <h1 class="h3 mb-4">Available Courses</h1>
+    <form class="mb-5 jcr-form" action="/courses/results" method="get">
+      <div class="form-group">
+        <label for="q">Search Courses by Course Name or Subject</label>
+        <input class="form-control" id="q" name="q" placeholder="e.g. Intervals" type="search">
+      </div>
+    </form>
+    {{#if q}}
+      <p>Results for "{{q}}"</p>
+    {{/if}}
+    {{#each subjects}}
+      {{#if courses}}
+        <h2 class="h4 mb-2">{{subject}}</h2>
+        <table class="mb-5 table table-bordered jcr-table jcr-table--half">
+          <tbody>
+            {{#each courses}}
+              <tr class="row jcr-row">
+                <td class="col-9 col-md-10">
+                  {{#if (contains id ../../studentCourseIds)}}
+                    <a href="/courses/{{id}}">{{name}}</a>
+                  {{else}}
+                    {{name}}
+                  {{/if}}
+                </td>
+                <td class="col-3 col-md-2 text-center">
+                  <form action="/courses/enroll" method="post">
+                    <input name="courseId" type="hidden" value="{{id}}">
+                    {{#if (contains id ../../studentCourseIds)}}
+                      <small>
+                        Enrolled
+                      </small>
+                    {{else}}
+                      <button class="btn btn-sm btn-warning" type="submit">
+                        Enroll
+                      </button>
+                    {{/if}}
+                  </form>
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      {{/if}}
+    {{/each}}
+  </div>
+</div>

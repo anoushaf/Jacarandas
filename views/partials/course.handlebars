@@ -1,0 +1,38 @@
+<h1 class="h3 mb-4">{{course.subject}}: {{course.name}}</h1>
+<div class="jcr-course">
+  {{{course.description}}}
+  {{#if course.image}}
+    <p class="mb-4 text-center">
+      <img src="/images/courses/{{course.image}}" alt="">
+    </p>
+  {{/if}}
+  {{#if course.audio}}
+    <div class="mb-4">
+      <audio controls>
+        <source src="/images/courses/{{course.audio}}" type="audio/mpeg">
+      </audio>
+    </div>
+  {{/if}}
+  {{#if course.video}}
+    <div class="mb-4 jcr-video-iframe-container">
+      <iframe class="jcr-video-iframe" id="player" src="{{course.video}}"></iframe>
+    </div>
+  {{/if}}
+  {{#if course.question}}
+    <hr>
+    <h2 class="h3 mb-3">Test Your Knowledge</h2>
+    <p class="h4 mb-4">
+      {{course.question}}
+    </p>
+  {{/if}}
+  {{#if course.answer}}
+    <button class="btn btn-secondary mb-4" data-answer-reveal type="button">
+      Reveal Answer
+    </button>
+    <div class="card d-none jcr-answer px-4 pb-0 pt-4" data-answer>
+      <p class="mb-4">
+        {{course.answer}}
+      </p>
+    </div>
+  {{/if}}
+</div>

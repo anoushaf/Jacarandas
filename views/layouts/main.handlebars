@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <title>{{page.title}} | Jacarandas Music Academy</title>
+  <link href="//fonts.googleapis.com/css?family=Satisfy%7CRoboto%7CRoboto+Condensed&display=swap" rel="stylesheet">
+  <link href="/lib/ui/trumbowyg.min.css" rel="stylesheet">
+  <link href="/lib/bootstrap.min.css" rel="stylesheet">
+  <link href="/css/style.css" rel="stylesheet">
+</head>
+<body>
+  <div class="jcr-background">
+    {{#if page.flashError}}
+      <div class="alert alert-danger text-center jcr-alert" data-flash-alert>
+        {{page.flashError}}
+      </div>
+    {{/if}}
+    {{#if page.flashSuccess}}
+      <div class="alert alert-success text-center jcr-alert" data-flash-alert>
+        {{page.flashSuccess}}
+      </div>
+    {{/if}}
+    {{#if page.signedOut}}
+      {{> nav-signed-out hideLinks=page.hideLinks}}
+    {{else if page.admin}}
+      {{> nav-admin}}
+    {{else}}
+      {{> nav-signed-in}}
+    {{/if}}
+    <main>
+      {{{body}}}
+    </main>
+    <footer class="jcr-footer">
+      <div class="container">
+        <p>
+          2019 &copy; Jacarandas Music Academy<br>
+          Designed by <a href="mailto:sibolibb@oregonstate.edu">Bangbay Siboliban</a>
+          and <a href="mailto:farshida@oregonstate.edu">Anousha Farshid</a>
+          for CS340.
+          {{#if page.admin}}
+            <a href="/login">Student Login</a>
+          {{else}}
+            <a href="/admin/login">Admin Login</a>
+          {{/if}}
+        </p>
+      </div>
+    </footer>
+  </div>
+  <script src="//www.youtube.com/iframe_api"></script>
+  <script src="/lib/jquery-3.4.1.min.js"></script>
+  <script src="/lib/trumbowyg.min.js"></script>
+  <script src="/lib/bootstrap.min.js"></script>
+  <script src="/js/script.js"></script>
+</body>
+</html>

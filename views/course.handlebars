@@ -1,0 +1,19 @@
+<div class="jcr-content">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        {{> course course=course}}
+      </div>
+      <div class="col-lg-3">
+        <div class="jcr-sidebar">
+          <h3 class="h4">My Courses</h3>
+          <ul class="pl-3">
+            {{#each courses}}
+              <li><a href="/courses/{{id}}">{{subject}}: {{name}}</a></li>
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

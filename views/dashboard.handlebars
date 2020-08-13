@@ -1,0 +1,49 @@
+<div class="jcr-content">
+  <div class="container">
+    <h1 class="h3 mb-4">Hi, {{student.name}}</h1>
+    <div class="row">
+      <div class="col-md-6">
+        <h2 class="h4 mb-2">My Courses</h2>
+        <div class="mb-5">
+          {{#if alert}}
+            <p class="alert alert-warning">{{alert}}</p>
+          {{/if}}
+          {{#if courses}}
+            <table class="table table-bordered jcr-table">
+              <tbody>
+                {{#each courses}}
+                  <tr class="row jcr-row">
+                    <td class="col-9 col-md-10">
+                      <a href="/courses/{{id}}">{{subject}}: {{name}}</a>
+                    </td>
+                    <td class="col-3 col-md-2 text-center">
+                      <form
+                        action="/courses/drop"
+                        data-form-delete="Are you sure you want to drop this course?"
+                        method="post"
+                      >
+                        <input name="courseId" type="hidden" value="{{id}}">
+                        <button class="btn btn-danger btn-sm" type="submit">
+                          Drop
+                        </button>
+                      </form>
+                    </td>
+                  </tr>
+                {{/each}}
+              </tbody>
+            </table>
+          {{else}}
+            <p>You haven't enrolled in any courses yet! <a href="/courses">View available courses</a></p>
+          {{/if}}
+        </div>
+      </div>
+      <div class="col-md-3 ml-md-auto">
+        <h2 class="h4 mb-2">Settings</h2>
+        <p class="mb-5">
+          {{#if page.avatar}}<img class="mr-2 jcr-avatar" src="/images/avatars/{{page.avatar}}" alt="">{{/if}}
+          <a href="/profile">Edit My Profile<a>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="jcr-content">
+  <div class="container">
+    <h1 class="h3 mb-4">Students</h1>
+    <table class="jcr-table mb-5 table table-bordered">
+      <thead>
+        <tr class="row jcr-row">
+          <th class="col-4">
+            Student
+          </th>
+          <th class="col-3">
+            Email
+          </th>
+          <th class="col-3">
+            Username
+          </th>
+          <th class="col-2 text-center">
+            Optin
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        {{#each students}}
+          <tr class="row jcr-row">
+            <td class="col-4">
+              {{#if avatar}}<img class="mr-2 jcr-avatar" src="/images/avatars/{{avatar}}" alt=""> {{/if}}
+              {{fullname}}
+            </td>
+            <td class="col-3">
+              {{email}}
+            </td>
+            <td class="col-3">
+              {{username}}
+            </td>
+            <td class="col-2 text-center">
+              {{#if optin}}
+                Yes
+              {{else}}
+                No
+              {{/if}}
+            </td>
+          </tr>
+        {{/each}}
+      </tbody>
+    </table>
+  </div>
+</div>
